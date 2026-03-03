@@ -17,9 +17,9 @@
 
 **Purpose**: Create project directory structure and extension manifest
 
-- [ ] T001 Create directory structure: `commands/`, `scripts/bash/`, `scripts/powershell/`, `tests/fixtures/`
-- [ ] T002 [P] Create extension manifest at `extension.yml` with schema_version 1.0, extension id `owl`, and command `speckit.owl.metrics` pointing to `commands/metrics.md`
-- [ ] T003 [P] Create command file at `commands/metrics.md` with YAML frontmatter referencing `scripts/bash/metrics.sh` (sh) and `scripts/powershell/metrics.ps1` (ps), and markdown body instructing the agent to run `{SCRIPT}` with `$ARGUMENTS` and display stdout
+- [x] T001 Create directory structure: `commands/`, `scripts/bash/`, `scripts/powershell/`, `tests/fixtures/`
+- [x] T002 [P] Create extension manifest at `extension.yml` with schema_version 1.0, extension id `owl`, and command `speckit.owl.metrics` pointing to `commands/metrics.md`
+- [x] T003 [P] Create command file at `commands/metrics.md` with YAML frontmatter referencing `scripts/bash/metrics.sh` (sh) and `scripts/powershell/metrics.ps1` (ps), and markdown body instructing the agent to run `{SCRIPT}` with `$ARGUMENTS` and display stdout
 
 ---
 
@@ -29,8 +29,8 @@
 
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Create test fixture directories as git repos in `tests/fixtures/`: `basic-repo/` (with `specs/`, `.specify/`, and `src/` containing text files), `empty-repo/` (initialized git repo with no files), `spec-only-repo/` (only `specs/` and `.specify/` dirs), `no-spec-repo/` (only `src/` dir), `gitignore-repo/` (with `.gitignore` excluding `build/` and a `build/` dir with files that should be skipped)
-- [ ] T005 Create test runner skeleton at `tests/test_metrics.sh` with helper functions: `setup()` to set working directory to a fixture, `assert_output_contains()` to check stdout for expected strings, `assert_exit_code()` to check return code, and a `run_tests()` entrypoint that reports pass/fail counts
+- [x] T004 Create test fixture directories as git repos in `tests/fixtures/`: `basic-repo/` (with `specs/`, `.specify/`, and `src/` containing text files), `empty-repo/` (initialized git repo with no files), `spec-only-repo/` (only `specs/` and `.specify/` dirs), `no-spec-repo/` (only `src/` dir), `gitignore-repo/` (with `.gitignore` excluding `build/` and a `build/` dir with files that should be skipped)
+- [x] T005 Create test runner skeleton at `tests/test_metrics.sh` with helper functions: `setup()` to set working directory to a fixture, `assert_output_contains()` to check stdout for expected strings, `assert_exit_code()` to check return code, and a `run_tests()` entrypoint that reports pass/fail counts
 
 **Checkpoint**: Fixtures and test harness ready — user story test-first work can begin
 
@@ -46,13 +46,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [US1] Write tests for summary mode in `tests/test_metrics.sh`: test_basic_repo (verifies spec lines, non-spec lines, chars, and percentages appear correctly), test_empty_repo (verifies "N/A" for percentages), test_spec_only_repo (verifies 100% spec percentage), test_no_spec_repo (verifies 0% spec percentage), test_gitignore_repo (verifies excluded files are not counted)
+- [x] T006 [US1] Write tests for summary mode in `tests/test_metrics.sh`: test_basic_repo (verifies spec lines, non-spec lines, chars, and percentages appear correctly), test_empty_repo (verifies "N/A" for percentages), test_spec_only_repo (verifies 100% spec percentage), test_no_spec_repo (verifies 0% spec percentage), test_gitignore_repo (verifies excluded files are not counted)
 
 ### Implementation for User Story 1
 
-- [ ] T007 [US1] Implement `scripts/bash/metrics.sh`: argument parsing (`--breakdown` flag), file enumeration via `git ls-files --cached --others --exclude-standard` with `find . -type f -not -path './.git/*'` fallback for non-git repos, symlink filtering (`-L` test), binary detection (check first 8KB for null bytes via `head -c 8192 | tr -cd '\0' | wc -c`), file categorization (paths starting with `specs/` or `.specify/` are spec, rest are non-spec), line counting per file, character counting with `tr -d '\r'` normalization, percentage calculation with N/A for zero denominators, and summary output formatted per `contracts/output-format.md` (comma-separated thousands, right-aligned labels)
-- [ ] T008 [P] [US1] Implement `scripts/powershell/metrics.ps1`: mirror metrics.sh logic using `git ls-files` for enumeration, `[System.IO.File]::ReadAllBytes()` for binary detection (check first 8KB for 0x00), `Get-Item` for symlink check, `Get-Content -Raw` with `-replace '\r',''` for normalized char counting, `Measure-Object -Line` for line counting, and matching summary output format
-- [ ] T009 [US1] Run summary mode tests via `bash tests/test_metrics.sh` and verify all 5 test cases pass
+- [x] T007 [US1] Implement `scripts/bash/metrics.sh`: argument parsing (`--breakdown` flag), file enumeration via `git ls-files --cached --others --exclude-standard` with `find . -type f -not -path './.git/*'` fallback for non-git repos, symlink filtering (`-L` test), binary detection (check first 8KB for null bytes via `head -c 8192 | tr -cd '\0' | wc -c`), file categorization (paths starting with `specs/` or `.specify/` are spec, rest are non-spec), line counting per file, character counting with `tr -d '\r'` normalization, percentage calculation with N/A for zero denominators, and summary output formatted per `contracts/output-format.md` (comma-separated thousands, right-aligned labels)
+- [x] T008 [P] [US1] Implement `scripts/powershell/metrics.ps1`: mirror metrics.sh logic using `git ls-files` for enumeration, `[System.IO.File]::ReadAllBytes()` for binary detection (check first 8KB for 0x00), `Get-Item` for symlink check, `Get-Content -Raw` with `-replace '\r',''` for normalized char counting, `Measure-Object -Line` for line counting, and matching summary output format
+- [x] T009 [US1] Run summary mode tests via `bash tests/test_metrics.sh` and verify all 5 test cases pass
 
 **Checkpoint**: User Story 1 fully functional — `bash scripts/bash/metrics.sh` produces correct summary in any test fixture repo
 
@@ -68,13 +68,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [US2] Write tests for breakdown mode in `tests/test_metrics.sh`: test_breakdown_basic (verifies per-directory table appears with correct columns and categories), test_breakdown_root_files (verifies files in repo root grouped under "."), test_breakdown_gitignore (verifies excluded dirs do not appear), test_breakdown_sorting (verifies spec dirs listed first alphabetically, then non-spec dirs alphabetically)
+- [x] T010 [US2] Write tests for breakdown mode in `tests/test_metrics.sh`: test_breakdown_basic (verifies per-directory table appears with correct columns and categories), test_breakdown_root_files (verifies files in repo root grouped under "."), test_breakdown_gitignore (verifies excluded dirs do not appear), test_breakdown_sorting (verifies spec dirs listed first alphabetically, then non-spec dirs alphabetically)
 
 ### Implementation for User Story 2
 
-- [ ] T011 [US2] Add breakdown mode to `scripts/bash/metrics.sh`: when `--breakdown` flag is set, after summary output print "Breakdown by Directory" section, group files by first path component (root files under "."), aggregate lines and chars per directory, label each as spec or non-spec, sort spec dirs first (alphabetical) then non-spec dirs (alphabetical), format columns per `contracts/output-format.md` breakdown rules
-- [ ] T012 [P] [US2] Add `-Breakdown` parameter to `scripts/powershell/metrics.ps1`: mirror the breakdown logic from metrics.sh with matching output format
-- [ ] T013 [US2] Run breakdown mode tests via `bash tests/test_metrics.sh` and verify all 4 breakdown test cases pass (plus all 5 summary tests still pass)
+- [x] T011 [US2] Add breakdown mode to `scripts/bash/metrics.sh`: when `--breakdown` flag is set, after summary output print "Breakdown by Directory" section, group files by first path component (root files under "."), aggregate lines and chars per directory, label each as spec or non-spec, sort spec dirs first (alphabetical) then non-spec dirs (alphabetical), format columns per `contracts/output-format.md` breakdown rules
+- [x] T012 [P] [US2] Add `-Breakdown` parameter to `scripts/powershell/metrics.ps1`: mirror the breakdown logic from metrics.sh with matching output format
+- [x] T013 [US2] Run breakdown mode tests via `bash tests/test_metrics.sh` and verify all 4 breakdown test cases pass (plus all 5 summary tests still pass)
 
 **Checkpoint**: Both user stories fully functional and independently testable
 
@@ -84,8 +84,8 @@
 
 **Purpose**: End-to-end validation and cleanup
 
-- [ ] T014 [P] Validate quickstart.md instructions: follow `specs/001-owl-metrics/quickstart.md` step-by-step in this repo, verify command output matches expected format
-- [ ] T015 Run full test suite (`bash tests/test_metrics.sh`) across all fixtures and verify 9 total tests pass with exit code 0
+- [x] T014 [P] Validate quickstart.md instructions: follow `specs/001-owl-metrics/quickstart.md` step-by-step in this repo, verify command output matches expected format
+- [x] T015 Run full test suite (`bash tests/test_metrics.sh`) across all fixtures and verify 9 total tests pass with exit code 0
 
 ---
 
