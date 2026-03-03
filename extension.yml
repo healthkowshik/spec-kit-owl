@@ -2,12 +2,13 @@ schema_version: "1.0"
 
 extension:
   id: "owl"
-  name: "Owl"
+  name: "Spec Kit Owl"
   version: "1.0.0"
-  description: "A github/spec-kit extension that watches your Specs vs Code — so you don't have to."
+  description: "Spec-to-code metrics: line counts, character counts, and percentages"
   author: "Health Kowshik"
   repository: "https://github.com/healthkowshik/spec-kit-owl"
   license: "MIT"
+  homepage: "https://github.com/healthkowshik/spec-kit-owl"
 
 requires:
   speckit_version: ">=0.1.0"
@@ -17,3 +18,9 @@ provides:
     - name: "speckit.owl.metrics"
       file: "commands/metrics.md"
       description: "Display spec vs non-spec line counts, character counts, and percentages"
+
+tags:
+  - "metrics"
+  - "spec-code"
+  - "analysis"
+  - "lines-of-code"

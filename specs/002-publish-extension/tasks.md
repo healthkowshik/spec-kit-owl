@@ -19,8 +19,8 @@
 
 **Purpose**: Ensure working environment is ready for publishing workflow
 
-- [ ] T001 Verify `gh` CLI is installed and authenticated (`gh auth status`)
-- [ ] T002 Checkout `main` branch and pull latest (`git checkout main && git pull origin main`)
+- [x] T001 Verify `gh` CLI is installed and authenticated (`gh auth status`)
+- [x] T002 Checkout `main` branch and pull latest (`git checkout main && git pull origin main`)
 
 **Checkpoint**: On `main` branch, up to date, `gh` CLI functional
 
@@ -34,9 +34,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T003 [P] [US1] Update extension manifest: shorten description to under 100 characters, add `homepage` field, add `tags` list per research.md R1 in `extension.yml`
-- [ ] T004 [P] [US1] Create changelog with v1.0.0 release notes using Keep a Changelog format in `CHANGELOG.md`
-- [ ] T005 [US1] Validate manifest against publishing guide checklist — confirm: all required fields present, description is 69 characters, ID is lowercase-only, version is semver, tags are 2-5 lowercase strings, all command files referenced exist at their paths
+- [x] T003 [P] [US1] Update extension manifest: shorten description to under 100 characters, add `homepage` field, add `tags` list per research.md R1 in `extension.yml`
+- [x] T004 [P] [US1] Create changelog with v1.0.0 release notes using Keep a Changelog format in `CHANGELOG.md`
+- [x] T005 [US1] Validate manifest against publishing guide checklist — confirm: all required fields present, description is 69 characters, ID is lowercase-only, version is semver, tags are 2-5 lowercase strings, all command files referenced exist at their paths
 - [ ] T006 [US1] Stage `extension.yml` and `CHANGELOG.md`, commit with message "Prepare extension for community catalog publication", push to `main`
 
 **Checkpoint**: `extension.yml` passes all validation checks, `CHANGELOG.md` exists, both pushed to `main`
