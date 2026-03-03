@@ -1,50 +1,95 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+==================
+Version change: N/A → 1.0.0 (initial ratification)
+
+Modified principles: N/A (initial)
+
+Added sections:
+- Core Principles (3 principles: Spec-Driven, Test-First, Simplicity)
+- Governance
+
+Removed sections:
+- [SECTION_2_NAME] placeholder (not needed per user decision)
+- [SECTION_3_NAME] placeholder (not needed per user decision)
+
+Templates requiring updates:
+- .specify/templates/plan-template.md — ✅ no changes needed
+  (Constitution Check section is generic; gates derived at runtime)
+- .specify/templates/spec-template.md — ✅ no changes needed
+  (user-story structure is compatible with all three principles)
+- .specify/templates/tasks-template.md — ✅ no changes needed
+  (task phases and parallel markers align with principles)
+
+Follow-up TODOs: None
+-->
+
+# spec-kit-owl Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-Driven Development
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every feature MUST begin with a specification before any code is
+written. The specification is the source of truth:
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- A feature without a spec MUST NOT be implemented.
+- Code MUST demonstrably satisfy every requirement in its spec.
+- When code and spec diverge, the spec MUST be updated first,
+  then code follows — never the reverse.
+- Spec changes MUST be reviewed with the same rigor as code
+  changes.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: spec-kit-owl exists to enforce spec-code alignment.
+The project itself MUST embody the discipline it promotes.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Test-First
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Tests MUST be written before the implementation they verify:
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Write failing tests that encode spec requirements.
+- Implement only enough code to make the tests pass.
+- Refactor only while tests remain green.
+- Every user-facing behavior MUST have at least one automated
+  test that can run without manual intervention.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: A tool that watches code correctness MUST itself be
+provably correct. Test-first ensures regressions are caught early
+and requirements are unambiguous.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Simplicity
+
+Prefer the simplest solution that satisfies the spec:
+
+- Do not introduce abstractions, indirection, or configurability
+  beyond what the current spec requires (YAGNI).
+- Three similar lines of code are better than a premature
+  abstraction.
+- Every added dependency or layer of complexity MUST be justified
+  by a concrete, current requirement — not a hypothetical future
+  one.
+- When in doubt, leave it out.
+
+**Rationale**: Complexity is the primary enemy of maintainability
+and correctness. Keeping the codebase small and focused makes it
+easier to reason about and to extend when a real need arises.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices for
+the spec-kit-owl project. Compliance is mandatory:
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- All pull requests and code reviews MUST verify adherence to the
+  three core principles.
+- Amendments to this constitution require:
+  1. A written proposal describing the change and its rationale.
+  2. An update to this file with a version bump following semantic
+     versioning (MAJOR for principle removals or redefinitions,
+     MINOR for additions or material expansions, PATCH for
+     clarifications and wording fixes).
+  3. A consistency review of all dependent templates under
+     `.specify/templates/` to ensure alignment.
+- The Sync Impact Report (HTML comment at the top of this file)
+  MUST be updated with every amendment.
+
+**Version**: 1.0.0 | **Ratified**: 2026-03-03 | **Last Amended**: 2026-03-03
