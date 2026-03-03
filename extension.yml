@@ -2,9 +2,9 @@ schema_version: "1.0"
 
 extension:
   id: "owl"
-  name: "Spec Kit Owl"
+  name: "Owl"
   version: "1.0.0"
-  description: "Watches your Specs vs Code — so you don't have to. Prints spec-to-code metrics with line and character counts."
+  description: "A github/spec-kit extension that watches your Specs vs Code — so you don't have to."
   author: "Health Kowshik"
   repository: "https://github.com/healthkowshik/spec-kit-owl"
   license: "MIT"

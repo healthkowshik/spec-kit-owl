@@ -3,6 +3,7 @@
 Auto-generated from all feature plans. Last updated: 2026-03-03
 
 ## Active Technologies
+- Bash (shell commands), YAML, Markdown, JSON — no application code to write + `git`, `gh` CLI (GitHub CLI) (002-publish-extension)
 
 - Bash 4+ / PowerShell 5.1+ + git (for `git ls-files` and `.gitignore` (001-owl-metrics)
 
@@ -22,6 +23,7 @@ tests/
 Bash 4+ / PowerShell 5.1+: Follow standard conventions
 
 ## Recent Changes
+- 002-publish-extension: Added Bash (shell commands), YAML, Markdown, JSON — no application code to write + `git`, `gh` CLI (GitHub CLI)
 
 - 001-owl-metrics: Added Bash 4+ / PowerShell 5.1+ + git (for `git ls-files` and `.gitignore`
 
