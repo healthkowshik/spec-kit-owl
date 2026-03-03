@@ -12,8 +12,8 @@
 A developer working on a spec-kit project wants to understand how
 much of their project is specification versus implementation code.
 They invoke the `speckit.owl.metrics` command and immediately see
-a clear summary: total spec lines, total non-spec lines, and their
-ratio. This gives them a quick health check on whether their
+a clear summary: total spec lines, total non-spec lines, and the
+spec percentage. This gives them a quick health check on whether their
 project is adequately specified.
 
 **Why this priority**: This is the entire core value proposition of
@@ -22,7 +22,8 @@ the extension. Without this, the extension has no purpose.
 **Independent Test**: Can be fully tested by running the command in
 any repository that contains a `specs/` or `.specify/` directory
 and at least one non-spec file. The output displays three numbers
-(spec lines, non-spec lines, ratio) and delivers immediate insight.
+(spec lines, non-spec lines, spec percentage) and delivers
+immediate insight.
 
 **Acceptance Scenarios**:
 
@@ -30,7 +31,7 @@ and at least one non-spec file. The output displays three numbers
    `.specify/` and source files elsewhere, **When** the user
    invokes `speckit.owl.metrics`, **Then** the output displays
    the total number of spec lines, total number of non-spec lines,
-   and the ratio of spec lines to non-spec lines.
+   and the spec percentage of total lines.
 
 2. **Given** a repository with files and directories that match
    patterns in `.gitignore`, **When** the user invokes the command,
@@ -40,12 +41,12 @@ and at least one non-spec file. The output displays three numbers
 3. **Given** a repository with no spec files (no `specs/` or
    `.specify/` directory), **When** the user invokes the command,
    **Then** the output shows 0 spec lines, the non-spec line
-   count, and a ratio of 0.
+   count, and a spec percentage of 0%.
 
 4. **Given** a repository with no non-spec files (only spec
    directories exist), **When** the user invokes the command,
    **Then** the output shows the spec line count, 0 non-spec lines,
-   and indicates the ratio as "N/A" (division by zero).
+   and indicates the spec percentage as 100%.
 
 ---
 
@@ -104,8 +105,9 @@ that each listed directory maps to the correct category.
 - **FR-003**: The command MUST count total lines across all
   remaining files in the repository, excluding `.git/`, files
   matching `.gitignore` patterns, and binary files.
-- **FR-004**: The command MUST display the spec-to-non-spec ratio
-  as a decimal number rounded to two decimal places (e.g., 0.42).
+- **FR-004**: The command MUST display the spec proportion as a
+  percentage of total lines (e.g., "42%"), rounded to the nearest
+  whole number.
 - **FR-005**: The command MUST exclude binary files from all
   counts.
 - **FR-006**: The command MUST exclude symbolic links from all
@@ -116,6 +118,8 @@ that each listed directory maps to the correct category.
   default, clearly labeling each metric.
 - **FR-009**: The extension MUST include a valid `extension.yml`
   manifest following the spec-kit extension schema version 1.0.
+- **FR-010**: The command MUST work on Windows, macOS, and Linux
+  without platform-specific setup or dependencies.
 
 ### Key Entities
 
@@ -135,17 +139,17 @@ that each listed directory maps to the correct category.
   trailing newline still counts its last line.
 - The `.gitignore` exclusion uses the same rules as git — including
   nested `.gitignore` files and global gitignore if present.
-- The ratio is calculated as: spec lines / non-spec lines. When
-  non-spec lines is 0, the output displays "N/A" instead of
-  dividing by zero.
+- The percentage is calculated as: (spec lines / total lines) * 100,
+  rounded to the nearest whole number. When total lines is 0, the
+  output displays "N/A" instead of dividing by zero.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
 - **SC-001**: Users can invoke the command and see spec lines,
-  non-spec lines, and ratio within 5 seconds on a repository with
-  up to 100,000 total lines.
+  non-spec lines, and spec percentage within 5 seconds on a
+  repository with up to 100,000 total lines.
 - **SC-002**: The line counts produced by the command match the
   result of manually counting lines in the same file categories
   with 100% accuracy.
