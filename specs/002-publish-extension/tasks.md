@@ -37,7 +37,7 @@
 - [x] T003 [P] [US1] Update extension manifest: shorten description to under 100 characters, add `homepage` field, add `tags` list per research.md R1 in `extension.yml`
 - [x] T004 [P] [US1] Create changelog with v1.0.0 release notes using Keep a Changelog format in `CHANGELOG.md`
 - [x] T005 [US1] Validate manifest against publishing guide checklist — confirm: all required fields present, description is 69 characters, ID is lowercase-only, version is semver, tags are 2-5 lowercase strings, all command files referenced exist at their paths
-- [ ] T006 [US1] Stage `extension.yml` and `CHANGELOG.md`, commit with message "Prepare extension for community catalog publication", push to `main`
+- [x] T006 [US1] Stage `extension.yml` and `CHANGELOG.md`, commit with message "Prepare extension for community catalog publication", push to `main`
 
 **Checkpoint**: `extension.yml` passes all validation checks, `CHANGELOG.md` exists, both pushed to `main`
 
@@ -51,9 +51,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Create `v1.0.0` git tag on `main` and push to origin (`git tag v1.0.0 && git push origin v1.0.0`)
-- [ ] T008 [US2] Create GitHub release titled "v1.0.0 - Initial Release" with CHANGELOG.md as release notes (`gh release create v1.0.0 --title "v1.0.0 - Initial Release" --notes-file CHANGELOG.md`)
-- [ ] T009 [US2] Verify release archive URL is accessible: `curl -sI https://github.com/healthkowshik/spec-kit-owl/archive/refs/tags/v1.0.0.zip` returns HTTP 302
+- [x] T007 [US2] Create `v1.0.0` git tag on `main` and push to origin (`git tag v1.0.0 && git push origin v1.0.0`)
+- [x] T008 [US2] Create GitHub release titled "v1.0.0 - Initial Release" with CHANGELOG.md as release notes (`gh release create v1.0.0 --title "v1.0.0 - Initial Release" --notes-file CHANGELOG.md`)
+- [x] T009 [US2] Verify release archive URL is accessible: `curl -sI https://github.com/healthkowshik/spec-kit-owl/archive/refs/tags/v1.0.0.zip` returns HTTP 302
 
 **Checkpoint**: GitHub release exists, archive URL is downloadable
 
@@ -67,10 +67,10 @@
 
 ### Implementation for User Story 3
 
-- [ ] T010 [US3] Fork `github/spec-kit` repository (`gh repo fork github/spec-kit --clone`) and create branch `add-owl-extension`
-- [ ] T011 [P] [US3] Add `"owl"` entry to `extensions/catalog.community.json` between "cleanup" and "retrospective" with all required fields per `contracts/catalog-entry.md`, update top-level `updated_at` timestamp
-- [ ] T012 [P] [US3] Add Spec Kit Owl row to `extensions/README.md` Available Extensions table in alphabetical order per `contracts/catalog-entry.md`
-- [ ] T013 [US3] Commit catalog and README changes, push to fork, submit PR to `github/spec-kit` with extension details and confirmation checklist in description
+- [x] T010 [US3] Fork `github/spec-kit` repository (`gh repo fork github/spec-kit --clone`) and create branch `add-owl-extension`
+- [x] T011 [P] [US3] Add `"owl"` entry to `extensions/catalog.community.json` between "cleanup" and "retrospective" with all required fields per `contracts/catalog-entry.md`, update top-level `updated_at` timestamp
+- [x] T012 [P] [US3] Add Spec Kit Owl row to `extensions/README.md` Available Extensions table in alphabetical order per `contracts/catalog-entry.md`
+- [x] T013 [US3] Commit catalog and README changes, push to fork, submit PR to `github/spec-kit` with extension details and confirmation checklist in description
 
 **Checkpoint**: PR submitted to `github/spec-kit`, all automated checks pass
 
@@ -80,7 +80,7 @@
 
 **Purpose**: End-to-end verification that the extension is installable
 
-- [ ] T014 Verify extension installs from archive URL (`specify extension add --from https://github.com/healthkowshik/spec-kit-owl/archive/refs/tags/v1.0.0.zip`)
+- [x] T014 Verify extension installs from archive URL (`specify extension add --from https://github.com/healthkowshik/spec-kit-owl/archive/refs/tags/v1.0.0.zip`)
 
 ---
 
